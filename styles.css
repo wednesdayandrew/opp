@@ -1,0 +1,7 @@
+.header {
+    background-color: bisque;
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    text-decoration: wavy;
+}
