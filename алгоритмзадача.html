@@ -93,31 +93,22 @@
                 result: resultMessage
             };
 
-              async function sendData(event) {
-            event.preventDefault(); 
-
-            const formData = new FormData(event.target); 
-            try {
-                const response = await fetch('https://bing.com/search', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    // Если данные успешно отправлены, перенаправляем на другую страницу
-                    window.location.href = 'https://example.com/success'; // Укажите URL для перенаправления
-                } else {
-                    console.error('Ошибка при отправке данных:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Ошибка сети:', error);
-            }
+            fetch('https://bing.com/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Успех:', data);
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+            });
         }
     </script>
-    <form onsubmit="sendData(event)">
-        
-        <button type="submit">Отправить</button> 
-    </form>
 
 </body>
 </html>
